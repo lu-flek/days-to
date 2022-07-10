@@ -17,7 +17,7 @@ public class EventService {
 
     public void saveEvent(SaveEventDto saveEventDto) {
         UserEntity user = userService.getUserById(saveEventDto.userId());
-        EventEntity eventEntity = new EventEntity(null, saveEventDto.name(), saveEventDto.dateTime(), user);
+        EventEntity eventEntity = new EventEntity(null, saveEventDto.name(), saveEventDto.date(), user);
         eventRepository.save(eventEntity);
     }
 
@@ -26,7 +26,7 @@ public class EventService {
             throw new IllegalArgumentException(String.format("Событие с id = %d не найдено в бд", eventDto.id()));
         });
         eventEntity.setName(eventDto.name());
-        eventEntity.setTime(eventDto.time());
+        eventEntity.setDate(eventDto.date());
 
         eventRepository.save(eventEntity);
     }

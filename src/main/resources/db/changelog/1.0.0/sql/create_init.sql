@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS events
 (
     id BIGINT PRIMARY KEY,
     name VARCHAR(512) NOT NULL,
-    time TIMESTAMP WITH TIME ZONE NOT NULL,
+    date DATE NOT NULL,
     user_id BIGINT NOT NULL CONSTRAINT events_users_fk REFERENCES users (id)
 );
 

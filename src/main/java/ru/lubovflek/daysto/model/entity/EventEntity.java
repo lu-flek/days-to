@@ -14,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "events")
@@ -33,8 +33,8 @@ public class EventEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "time")
-    private OffsetDateTime time;
+    @Column(name = "date")
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
