@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/days_to_db?currentSchema=days_to
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 5000
+  liquibase:
+    default-schema: days_to
+  jpa:
+    hibernate:
+      ddl-auto: validate
