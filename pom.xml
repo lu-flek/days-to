@@ -30,6 +30,10 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.4</version>
@@ -75,43 +79,6 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>4.8.0</version>
-				<configuration>
-					<!--suppress UnresolvedMavenProperty -->
-					<changelogSchemaName>${profile.changelogSchemaName}</changelogSchemaName>
-					<!--suppress UnresolvedMavenProperty -->
-					<propertyFile>${profile.propertyFile}</propertyFile>
-					<!--suppress UnresolvedMavenProperty -->
-					<changeLogFile>${profile.changeLogFile}</changeLogFile>
-					<!--suppress UnresolvedMavenProperty -->
-					<dataDir>${profile.dataDir}</dataDir>
-					<!--suppress UnresolvedMavenProperty, MavenModelInspection, MybatisXMapperXmlInspection -->
-					<verbose>${profile.verbose}</verbose>
-					<!--suppress UnresolvedMavenProperty -->
-					<logging>${profile.logging}</logging>
-					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.liquibase.ext</groupId>
-						<artifactId>liquibase-hibernate4</artifactId>
-						<version>3.6</version>
-					</dependency>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-beans</artifactId>
-						<version>5.3.16</version>
-					</dependency>
-					<dependency>
-						<groupId>org.springframework.data</groupId>
-						<artifactId>spring-data-jpa</artifactId>
-						<version>2.6.2</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 		</plugins>
 
