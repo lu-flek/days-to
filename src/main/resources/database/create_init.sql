@@ -1,7 +1,7 @@
 create TABLE IF NOT EXISTS users
 (
     id       BIGINT CONSTRAINT user_pk PRIMARY KEY,
-    name     VARCHAR(512) NOT NULL,
+    name     VARCHAR(512) NOT NULL UNIQUE,
     password VARCHAR(32)  NOT NULL
 );
 
