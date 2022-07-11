@@ -3,8 +3,10 @@ package ru.lubovflek.daysto.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.lubovflek.daysto.model.dto.AddUserDto;
 import ru.lubovflek.daysto.model.dto.EventDto;
 import ru.lubovflek.daysto.service.UserService;
 
@@ -17,8 +19,13 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/{user-id}")
-    public List<EventDto> getEventsByUserId(@PathVariable(name = "user-id") Long userId) {
+    @GetMapping("/{id}")
+    public List<EventDto> getEventsByUserId(@PathVariable(name = "id") Long userId) {
         return userService.getEventsByUserId(userId);
+    }
+
+    @PostMapping("/add")
+    public void addUser(AddUserDto addUserDto) {
+        userService.addUser(addUserDto);
     }
 }

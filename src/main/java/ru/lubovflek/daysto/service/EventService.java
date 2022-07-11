@@ -22,11 +22,11 @@ public class EventService {
     }
 
     public void updateEvent(EventDto eventDto) {
-        EventEntity eventEntity = eventRepository.findById(eventDto.id()).orElseThrow(() -> {
-            throw new IllegalArgumentException(String.format("Событие с id = %d не найдено в бд", eventDto.id()));
+        EventEntity eventEntity = eventRepository.findById(eventDto.getId()).orElseThrow(() -> {
+            throw new IllegalArgumentException(String.format("Event with id = %d hasn't been found in db", eventDto.getId()));
         });
-        eventEntity.setName(eventDto.name());
-        eventEntity.setDate(eventDto.date());
+        eventEntity.setName(eventDto.getName());
+        eventEntity.setDate(eventDto.getDate());
 
         eventRepository.save(eventEntity);
     }
