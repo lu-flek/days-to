@@ -26,7 +26,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
-    @SequenceGenerator(name = "user_generator", sequenceName = "user_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "user_generator", sequenceName = "users_id_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
@@ -36,6 +36,6 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<EventEntity> events;
 }

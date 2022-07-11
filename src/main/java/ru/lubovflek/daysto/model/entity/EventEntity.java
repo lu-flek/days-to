@@ -26,7 +26,7 @@ public class EventEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "event_generator")
-    @SequenceGenerator(name = "event_generator", sequenceName = "event_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "event_generator", sequenceName = "events_id_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 

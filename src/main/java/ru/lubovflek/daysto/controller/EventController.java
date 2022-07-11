@@ -2,10 +2,10 @@ package ru.lubovflek.daysto.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lubovflek.daysto.model.dto.EventDto;
 import ru.lubovflek.daysto.model.dto.SaveEventDto;
@@ -30,8 +30,8 @@ public class EventController {
         eventService.updateEvent(eventDto);
     }
 
-    @DeleteMapping
-    public void deleteEvent(@RequestParam Long eventId) {
+    @DeleteMapping("/{id}")
+    public void deleteEvent(@PathVariable(name = "id") Long eventId) {
         eventService.deleteEvent(eventId);
     }
 }
