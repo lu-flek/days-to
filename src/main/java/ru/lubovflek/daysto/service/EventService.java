@@ -1,6 +1,7 @@
 package ru.lubovflek.daysto.service;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.lubovflek.daysto.model.dto.EventDto;
 import ru.lubovflek.daysto.model.dto.SaveEventDto;
@@ -8,16 +9,16 @@ import ru.lubovflek.daysto.model.entity.EventEntity;
 import ru.lubovflek.daysto.model.entity.UserEntity;
 import ru.lubovflek.daysto.repository.EventRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EventService {
 
     private final EventRepository eventRepository;
-    private final UserService userService;
+    private final ModelMapper mapper;
 
-    public void saveEvent(SaveEventDto saveEventDto) {
-        UserEntity user = userService.getUserById(saveEventDto.userId());
-        EventEntity eventEntity = new EventEntity(null, saveEventDto.name(), saveEventDto.date(), user);
+    public void saveEvent(EventEntity eventEntity) {
         eventRepository.save(eventEntity);
     }
 
@@ -33,5 +34,9 @@ public class EventService {
 
     public void deleteEvent(Long eventId) {
         eventRepository.deleteById(eventId);
+    }
+
+    public List<EventDto> makeDtoFromEntity(List<EventEntity> events) {
+        return events.stream().map(entity -> mapper.map(entity, EventDto.class)).toList();
     }
 }

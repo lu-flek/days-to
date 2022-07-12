@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.lubovflek.daysto.model.dto.EventDto;
 import ru.lubovflek.daysto.model.dto.SaveEventDto;
+import ru.lubovflek.daysto.service.DaysToFacade;
 import ru.lubovflek.daysto.service.EventService;
 import ru.lubovflek.daysto.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,17 +23,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventController {
 
+    private final DaysToFacade facade;
     private final EventService eventService;
-    private final UserService userService;
 
-    @GetMapping("/{id}")
-    public List<EventDto> getEventsByUserId(@PathVariable(name = "id") Long userId) {
-        return userService.getEventsByUserId(userId);
+    @GetMapping("/all")
+    public List<EventDto> getAllUserEvents(Principal principal) {
+        return facade.getAllEventsByUserName(principal.getName());
     }
 
     @PostMapping("/add")
     public void addEvent(@Valid @RequestBody SaveEventDto saveEventDto) {
-        eventService.saveEvent(saveEventDto);
+        facade.saveEvent(saveEventDto);
     }
 
     @PostMapping("/update")

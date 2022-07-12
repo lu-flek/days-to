@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.lubovflek.daysto.model.dto.AddUserDto;
 import ru.lubovflek.daysto.model.dto.EventDto;
 import ru.lubovflek.daysto.model.dto.UserDto;
+import ru.lubovflek.daysto.service.DaysToFacade;
 import ru.lubovflek.daysto.service.UserService;
 
 import javax.validation.Valid;
@@ -19,11 +20,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
+    private final DaysToFacade facade;
     private final UserService userService;
 
-    @GetMapping("/{id}")
-    public List<EventDto> getEventsByUserId(@PathVariable(name = "id") Long userId) {
-        return userService.getEventsByUserId(userId);
+    @GetMapping("/{name}")
+    public List<EventDto> getEventsByUserId(@PathVariable(name = "name") String name) {
+        return facade.getAllEventsByUserName(name);
     }
 
     @PostMapping("/add")

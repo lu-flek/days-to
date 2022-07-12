@@ -26,10 +26,10 @@ public class UserService {
         });
     }
 
-    public List<EventDto> getEventsByUserId(Long userId) {
-        UserEntity user = getUserById(userId);
-        List<EventEntity> events = user.getEvents();
-        return events.stream().map(entity -> mapper.map(entity, EventDto.class)).toList();
+    public UserEntity getUserByName(String name) {
+        return userRepository.findByName(name).orElseThrow(() -> {
+            throw new IllegalArgumentException(String.format("User with name = %s hasn't been found in db", name));
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +40,10 @@ public class UserService {
 
     public List<UserDto> getAllUsers() {
         List<UserEntity> allUsers = userRepository.findAll();
-        return allUsers.stream().map(entity -> mapper.map(entity, UserDto.class)).toList();
+        return allUsers.stream().map(this::makeDtoFromEntity).toList();
+    }
+
+    UserDto makeDtoFromEntity(UserEntity entity) {
+        return mapper.map(entity, UserDto.class);
     }
 }
